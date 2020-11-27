@@ -7,6 +7,7 @@
 
 import UIKit
 
+//MARK: - SF Symbols Icons
 enum Icons {
     static let addIcon          = UIImage(systemName: "plus")!
     static let editIcon         = UIImage(systemName: "square.and.pencil")!
@@ -14,24 +15,24 @@ enum Icons {
     static let addPersonIcon    = UIImage(systemName: "person.crop.circle.badge.plus")!
 }
 
-
+//MARK: - Local Project Images Assets
 enum Images {
     static let defaultPhoto = UIImage(named: "default_photo")!
 }
 
-
+//MARK: - Custom Colors
 enum Colors {
     static let absoluteWhite = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
     static let absoluteBlack = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
 }
 
+//MARK: - ScreenSizes and Device Type
 enum ScreenSize {
     static let width        = UIScreen.main.bounds.size.width
     static let height       = UIScreen.main.bounds.size.height
     static let maxLength    = max(ScreenSize.width, ScreenSize.height)
     static let minLength    = min(ScreenSize.width, ScreenSize.height)
 }
-
 
 enum DeviceTypes {
     static let idiom                    = UIDevice.current.userInterfaceIdiom
@@ -51,3 +52,5 @@ enum DeviceTypes {
         return isiPhoneX || isiPhoneXsMaxAndXr
     }
 }
+
+

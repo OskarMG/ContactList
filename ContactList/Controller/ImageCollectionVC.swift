@@ -10,7 +10,7 @@ import UIKit
 class ImageCollectionVC: UIViewController {
     
     //MARK: - Properties
-    var imageCollection = [UIImage]()
+    var imageCollection = [Image]()
     
     //MARK: - UI Elements
     let doneButton: UIButton = {
@@ -22,6 +22,12 @@ class ImageCollectionVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureVC()
+        NetworkManager.shared.getImages {[weak self] (images) in
+            guard let self = self else { return }
+            guard let images = images else { return }
+            self.imageCollection = images
+            print(self.imageCollection[0].urls["small"])
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
