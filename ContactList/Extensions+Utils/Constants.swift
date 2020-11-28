@@ -9,10 +9,11 @@ import UIKit
 
 //MARK: - SF Symbols Icons
 enum Icons {
-    static let addIcon          = UIImage(systemName: "plus")!
-    static let editIcon         = UIImage(systemName: "square.and.pencil")!
-    static let rightArrowIcon   = UIImage(systemName: "chevron.right")!
-    static let addPersonIcon    = UIImage(systemName: "person.crop.circle.badge.plus")!
+    static let addIcon              = UIImage(systemName: "plus")!
+    static let editIcon             = UIImage(systemName: "square.and.pencil")!
+    static let rightArrowIcon       = UIImage(systemName: "chevron.right")!
+    static let addPersonIcon        = UIImage(systemName: "person.crop.circle.badge.plus")!
+    static let lostConnectionIcon   = UIImage(systemName: "wifi.exclamationmark")!
 }
 
 //MARK: - Local Project Images Assets
@@ -53,4 +54,32 @@ enum DeviceTypes {
     }
 }
 
+
+//MARK: - Error Messages
+enum CLError: String, Error {
+    case invalidData            = "Data received from the server was invalid. Please try again."
+    case invalidResponse        = "Invalid response from the server. Please try again."
+    case apiUnavailable         = "You probably excced the max number requests allowed, try later. 😅"
+    case unavailableToComplete  = "Unable to complete your request. Please check your internet connection."
+}
+
+
+//MARK: - UI Helpers
+enum UIHelper {
+    
+    static func createThreeColumnFlowLayout(in view: UIView) -> UICollectionViewFlowLayout {
+        let width                       = view.bounds.width
+        let padding: CGFloat            = 12
+        let minimunItemSpace: CGFloat   = 10
+        let availableWidth              = width - (padding * 2) - (minimunItemSpace * 2)
+        let itemWidth                   = availableWidth / 3
+        
+        let flowLayout                  = UICollectionViewFlowLayout()
+        flowLayout.sectionInset         = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
+        flowLayout.itemSize             = CGSize(width: itemWidth, height: itemWidth + 40)
+        
+        return flowLayout
+    }
+    
+}
 

@@ -27,6 +27,9 @@
 		707863E2257040430091446A /* ImageCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707863E1257040430091446A /* ImageCollectionVC.swift */; };
 		707863F025708F890091446A /* CLTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707863EF25708F890091446A /* CLTextFieldView.swift */; };
 		7078641A25716B9C0091446A /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7078641925716B9C0091446A /* Image.swift */; };
+		7078641E2571B9FB0091446A /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7078641D2571B9FB0091446A /* ImageCell.swift */; };
+		707864212571C43E0091446A /* CLDataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707864202571C43E0091446A /* CLDataLoadingVC.swift */; };
+		707864242571CFEE0091446A /* CLAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707864232571CFEE0091446A /* CLAlertVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +55,9 @@
 		707863E1257040430091446A /* ImageCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionVC.swift; sourceTree = "<group>"; };
 		707863EF25708F890091446A /* CLTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLTextFieldView.swift; sourceTree = "<group>"; };
 		7078641925716B9C0091446A /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		7078641D2571B9FB0091446A /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		707864202571C43E0091446A /* CLDataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDataLoadingVC.swift; sourceTree = "<group>"; };
+		707864232571CFEE0091446A /* CLAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLAlertVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +147,9 @@
 				703A54E6256FD49600647EEB /* NetworkManager */,
 				70531B7D256EF5E500EBCF24 /* MainContactListNC.swift */,
 				70531B76256EF36800EBCF24 /* MyContactsVC.swift */,
+				707864232571CFEE0091446A /* CLAlertVC.swift */,
 				70531B7A256EF38E00EBCF24 /* NewContactVC.swift */,
+				707864202571C43E0091446A /* CLDataLoadingVC.swift */,
 				703A54F3256FFB8500647EEB /* NewContactHeaderVC.swift */,
 				707863E1257040430091446A /* ImageCollectionVC.swift */,
 			);
@@ -161,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				70531B8A256F01AC00EBCF24 /* ContactCell.swift */,
+				7078641D2571B9FB0091446A /* ImageCell.swift */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -237,6 +246,9 @@
 				707863F025708F890091446A /* CLTextFieldView.swift in Sources */,
 				7078641A25716B9C0091446A /* Image.swift in Sources */,
 				703A54E3256FD45800647EEB /* Contact.swift in Sources */,
+				707864242571CFEE0091446A /* CLAlertVC.swift in Sources */,
+				7078641E2571B9FB0091446A /* ImageCell.swift in Sources */,
+				707864212571C43E0091446A /* CLDataLoadingVC.swift in Sources */,
 				70531B91256F35BA00EBCF24 /* CLBodyLabel.swift in Sources */,
 				70531B7B256EF38E00EBCF24 /* NewContactVC.swift in Sources */,
 				703A54F1256FEF0500647EEB /* CLNewContactMessageView.swift in Sources */,

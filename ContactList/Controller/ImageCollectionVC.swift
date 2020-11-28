@@ -7,10 +7,17 @@
 
 import UIKit
 
-class ImageCollectionVC: UIViewController {
+protocol ImageCollectionVCDelegate: class {
+    func didTap(image urlString: String)
+}
+
+class ImageCollectionVC: CLDataLoadingVC {
+    
+    enum Section { case main }
     
     //MARK: - Properties
     var imageCollection = [Image]()
+    var delegate: NewContactVC!
     
     //MARK: - UI Elements
     let doneButton: UIButton = {
@@ -19,22 +26,23 @@ class ImageCollectionVC: UIViewController {
         return button
     }()
     
+    var collectionView: UICollectionView!
+    var collectionViewDataSource: UICollectionViewDiffableDataSource<Section, Image>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureVC()
-        NetworkManager.shared.getImages {[weak self] (images) in
-            guard let self = self else { return }
-            guard let images = images else { return }
-            self.imageCollection = images
-            print(self.imageCollection[0].urls["small"])
-        }
+        configureCollectionView()
+        configureDataSource()
+        getImages()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
     }
     
-
+    
+    //MARK: - Methods
     private func configureVC() {
         view.backgroundColor = .systemBackground
         view.addSubviews(views: doneButton)
@@ -49,9 +57,68 @@ class ImageCollectionVC: UIViewController {
         doneButton.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)
     }
     
+    private func getImages() {
+        showLoadingView()
+        NetworkManager.shared.getImages {[weak self] (result) in
+            guard let self = self else { return }
+            switch result {
+                case .success(let images):
+                    self.imageCollection = images
+                    self.updateData(on: images)
+                    self.dismissLoadingView()
+                case .failure(let error):
+                    self.dismissLoadingView()
+                    self.presentCLAlertOnMainThread(title: "Ups 😅", message: error.rawValue, buttonTitle: "Ok")
+                    DispatchQueue.main.async { self.showEmptyStateView(in: self.view) }
+            }
+        }
+    }
+    
+    private func configureCollectionView() {
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
+        view.addSubview(collectionView)
+        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.delegate = self
+        collectionView.backgroundColor = .systemBackground
+        collectionView.register(ImageCell.self, forCellWithReuseIdentifier: ImageCell.reuseID)
+        
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: doneButton.bottomAnchor, constant: 4),
+            collectionView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
+    
+    private func configureDataSource() {
+        collectionViewDataSource = UICollectionViewDiffableDataSource<Section, Image>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, image) -> UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.reuseID, for: indexPath) as! ImageCell
+            cell.set(image: image)
+            return cell
+        })
+    }
+    
+    private func updateData(on images: [Image]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Image>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(images)
+        DispatchQueue.main.async { self.collectionViewDataSource.apply(snapshot, animatingDifferences: true) }
+    }
     
     @objc private func dismissVC() {
         dismiss(animated: true)
     }
-
 }
+
+
+//MARK: - CollectionViewDelegate
+extension ImageCollectionVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let urlString = imageCollection[indexPath.row].urls["thumb"] {
+            delegate.didTap(image: urlString)
+        }
+        dismissVC()
+    }
+}
+
+

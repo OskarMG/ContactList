@@ -28,12 +28,12 @@ class MyContactsVC: UIViewController {
         configureVC()
         setupNavButtons()
         configureTableView()
-        contacts = fetchData()
+        //contacts = fetchData()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.resignFirstResponder()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        isContactsListEmpty()
     }
     
     //MARK: - Methods

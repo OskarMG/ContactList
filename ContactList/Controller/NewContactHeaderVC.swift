@@ -18,9 +18,9 @@ class NewContactHeaderVC: UIViewController {
     weak var delegate: NewContactVC!
     
     //MARK: - UI Elements
-    let imageView: UIImageView = {
-        let imageView = UIImageView(image: Images.defaultPhoto)
-        imageView.contentMode = .scaleToFill
+    let imageView: CLContactImageView = {
+        let imageView = CLContactImageView(frame: .zero)
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 5
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -32,7 +32,7 @@ class NewContactHeaderVC: UIViewController {
         button.setTitle("Load image", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .systemGreen
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = 20
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -52,6 +52,7 @@ class NewContactHeaderVC: UIViewController {
         super.viewDidLoad()
         configureVC()
         setupImage()
+        delegate.delegate = self
     }
     
 

@@ -7,12 +7,16 @@
 
 import UIKit
 
+protocol HeaderVCDelegate: class {
+    func set(image: UIImage)
+}
 
 class NewContactVC: UIViewController {
     
     //MARK: - Properties
     var contact: Contact?
     var formTopConstraint: NSLayoutConstraint!
+    var delegate: NewContactHeaderVC!
     
     let textFieldViews = [
         CLTextFieldView(textLabel: "Name", placeHolder: "Oscar"),
@@ -174,14 +178,23 @@ class NewContactVC: UIViewController {
 extension NewContactVC: NewContactHeaderVCDelegate {
     func didLoadImageButtonTapped() {
         let imageCollectionVC = ImageCollectionVC()
+        imageCollectionVC.delegate = self
         imageCollectionVC.modalPresentationStyle  = .pageSheet
         imageCollectionVC.modalTransitionStyle    = .coverVertical
         DispatchQueue.main.async { self.present(imageCollectionVC, animated: true) }
     }
 }
 
+
+//MARK: - ImageCollectionVCDelegate
+extension NewContactVC: ImageCollectionVCDelegate {
+    func didTap(image urlString: String) {
+        DispatchQueue.main.async { self.delegate.imageView.downloadImage(from: urlString) }
+    }
+}
+
+//MARK - UITextFieldDelegate
 extension NewContactVC: UITextFieldDelegate {
-    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         scrollTo(element: textField.tag, reset: false)
     }
