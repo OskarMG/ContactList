@@ -14,8 +14,8 @@ class CLTextFieldView: UIView {
     let textField: UITextField = {
         let textField = UITextField(frame: .zero)
         textField.autocorrectionType = .no
-        textField.autocapitalizationType = .none
         textField.returnKeyType = .done
+//        textField.backgroundColor = .yellow
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -39,23 +39,24 @@ class CLTextFieldView: UIView {
     
     //MARK: - Methdos
     private func configure() {
-        addSubviews(views: label, textField)
+        addSubviews(views:label, textField)
         label.textColor = Colors.absoluteBlack
         textField.textColor = Colors.absoluteBlack
+
+        let padding: CGFloat = 20
         
         NSLayoutConstraint.activate([
             // textField Constrinats
-            textField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            textField.heightAnchor.constraint(equalTo: heightAnchor, constant: -21),
-            textField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 5),
+            textField.bottomAnchor.constraint(equalTo: bottomAnchor),
+            textField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            textField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.7),
             
             // label Constrinats
-            label.topAnchor.constraint(equalTo: textField.topAnchor, constant: -10),
-            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            label.heightAnchor.constraint(equalToConstant: 14)
-        
+            label.bottomAnchor.constraint(equalTo: textField.topAnchor, constant: 4),
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            label.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2)
         ])
     }
 }

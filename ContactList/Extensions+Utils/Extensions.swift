@@ -33,13 +33,17 @@ extension UIViewController {
             let alertVC = CLAlertVC(title: title, message: message, buttonTitle: buttonTitle)
             alertVC.modalPresentationStyle  = .overFullScreen
             alertVC.modalTransitionStyle    = .crossDissolve
-            
             self.present(alertVC, animated: true)
         }
     }
 }
 
 extension String {
+    
+    func isWhitespace() -> Bool {
+        return self.trimmingCharacters(in: .whitespaces) == "" 
+    }
+    
     /// mask example: `(###) ###-####`
     func formatToPhone() -> String {
         let numbers = self.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)

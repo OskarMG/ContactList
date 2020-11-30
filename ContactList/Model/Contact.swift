@@ -7,7 +7,8 @@
 
 import UIKit
 
-struct Contact: Codable {
+struct Contact: Codable, Hashable {
+    var identifier = UUID()
     var name:      String!
     var lastName:  String!
     var telephone: String!

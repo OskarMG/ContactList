@@ -18,25 +18,8 @@ class NewContactHeaderVC: UIViewController {
     weak var delegate: NewContactVC!
     
     //MARK: - UI Elements
-    let imageView: CLContactImageView = {
-        let imageView = CLContactImageView(frame: .zero)
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 5
-        imageView.clipsToBounds = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
-    let loadImage: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Load image", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemGreen
-        button.layer.cornerRadius = 20
-        button.clipsToBounds = true
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+    let imageView = CLContactImageView(frame: .zero)
+    let loadImage = CLSmallButton(type: .system)
     
     init(imageData: Data?, delegate: NewContactVC) {
         super.init(nibName: nil, bundle: nil)
@@ -81,8 +64,8 @@ class NewContactHeaderVC: UIViewController {
     }
     
     private func setupImage() {
-        guard let data = imageData, let image = UIImage(data: data) else { return }
-        DispatchQueue.main.async { self.imageView.image = image }
+        guard let data = imageData else { return }
+        DispatchQueue.main.async { self.imageView.image = UIImage(data: data) }
     }
     
     

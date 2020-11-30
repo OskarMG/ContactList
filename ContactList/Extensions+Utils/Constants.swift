@@ -61,6 +61,13 @@ enum CLError: String, Error {
     case invalidResponse        = "Invalid response from the server. Please try again."
     case apiUnavailable         = "You probably excced the max number requests allowed, try later. 😅"
     case unavailableToComplete  = "Unable to complete your request. Please check your internet connection."
+    
+    case couldNotSave           = "Could not save Contact."
+    case couldNotRetriveData    = "Could not retrive contacts."
+    case contactAlreadyExists   = "Contact already exists."
+    
+    case completeFields         = "Please, complete required fields."
+    case invalidTelephone       = "Please, introduce a valid telephone number."
 }
 
 

@@ -30,6 +30,8 @@
 		7078641E2571B9FB0091446A /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7078641D2571B9FB0091446A /* ImageCell.swift */; };
 		707864212571C43E0091446A /* CLDataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707864202571C43E0091446A /* CLDataLoadingVC.swift */; };
 		707864242571CFEE0091446A /* CLAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707864232571CFEE0091446A /* CLAlertVC.swift */; };
+		707B024925746B160034022B /* CLSmallButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B024825746B160034022B /* CLSmallButton.swift */; };
+		707B024E2574996F0034022B /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B024D2574996F0034022B /* PersistenceManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,8 @@
 		7078641D2571B9FB0091446A /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		707864202571C43E0091446A /* CLDataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDataLoadingVC.swift; sourceTree = "<group>"; };
 		707864232571CFEE0091446A /* CLAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLAlertVC.swift; sourceTree = "<group>"; };
+		707B024825746B160034022B /* CLSmallButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLSmallButton.swift; sourceTree = "<group>"; };
+		707B024D2574996F0034022B /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,7 @@
 				70531B9B256F41B600EBCF24 /* CLContactImageView.swift */,
 				703A54F0256FEF0500647EEB /* CLNewContactMessageView.swift */,
 				707863EF25708F890091446A /* CLTextFieldView.swift */,
+				707B024825746B160034022B /* CLSmallButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -145,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				703A54E6256FD49600647EEB /* NetworkManager */,
+				707B024C257499460034022B /* PersistenceManager */,
 				70531B7D256EF5E500EBCF24 /* MainContactListNC.swift */,
 				70531B76256EF36800EBCF24 /* MyContactsVC.swift */,
 				707864232571CFEE0091446A /* CLAlertVC.swift */,
@@ -172,6 +178,14 @@
 				7078641D2571B9FB0091446A /* ImageCell.swift */,
 			);
 			path = CustomCells;
+			sourceTree = "<group>";
+		};
+		707B024C257499460034022B /* PersistenceManager */ = {
+			isa = PBXGroup;
+			children = (
+				707B024D2574996F0034022B /* PersistenceManager.swift */,
+			);
+			path = PersistenceManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,6 +268,7 @@
 				703A54F1256FEF0500647EEB /* CLNewContactMessageView.swift in Sources */,
 				703A54EA256FD8D600647EEB /* NetworkManager.swift in Sources */,
 				70531B77256EF36800EBCF24 /* MyContactsVC.swift in Sources */,
+				707B024E2574996F0034022B /* PersistenceManager.swift in Sources */,
 				70531B58256EF1CA00EBCF24 /* AppDelegate.swift in Sources */,
 				70531B7E256EF5E500EBCF24 /* MainContactListNC.swift in Sources */,
 				703A54F4256FFB8500647EEB /* NewContactHeaderVC.swift in Sources */,
@@ -261,6 +276,7 @@
 				70531B8B256F01AC00EBCF24 /* ContactCell.swift in Sources */,
 				70531B9C256F41B600EBCF24 /* CLContactImageView.swift in Sources */,
 				70531B8E256F352B00EBCF24 /* CLTitleLabel.swift in Sources */,
+				707B024925746B160034022B /* CLSmallButton.swift in Sources */,
 				70531B97256F3C3500EBCF24 /* Extensions.swift in Sources */,
 				707863E2257040430091446A /* ImageCollectionVC.swift in Sources */,
 				70531B83256EFAB000EBCF24 /* Constants.swift in Sources */,

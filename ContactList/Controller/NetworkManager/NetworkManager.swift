@@ -15,7 +15,6 @@ class NetworkManager {
     private init() {}
     
     func getImages(completed: @escaping(Result<[Image], CLError>) -> Void) {
-        
         let urlString = "\(baseUrl)" + key
         
         guard let url = URL(string: urlString) else {
@@ -42,12 +41,32 @@ class NetworkManager {
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let images = try decoder.decode([Image].self, from: data)
-                completed(.success(images))
+                let imageObjects = try decoder.decode([Image].self, from: data)
+                completed(.success(imageObjects))
             } catch {
                 completed(.failure(.apiUnavailable))
                 return
             }
+        }
+        
+        task.resume()
+    }
+    
+    func downloadImage(from urlString: String, completed: @escaping(Data?)->Void) {
+        guard let url = URL(string: urlString) else {
+            completed(nil)
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard error == nil,
+                  let response = response as? HTTPURLResponse,
+                  response.statusCode == 200,
+                  let data = data else {
+                    completed(nil)
+                    return
+            }
+            completed(data)
         }
         
         task.resume()

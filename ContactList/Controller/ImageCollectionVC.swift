@@ -16,8 +16,8 @@ class ImageCollectionVC: CLDataLoadingVC {
     enum Section { case main }
     
     //MARK: - Properties
-    var imageCollection = [Image]()
-    var delegate: NewContactVC!
+    weak var delegate: NewContactVC!
+    var imageObjects = [Image]()
     
     //MARK: - UI Elements
     let doneButton: UIButton = {
@@ -59,12 +59,12 @@ class ImageCollectionVC: CLDataLoadingVC {
     
     private func getImages() {
         showLoadingView()
-        NetworkManager.shared.getImages {[weak self] (result) in
+        NetworkManager.shared.getImages { [weak self] (result) in
             guard let self = self else { return }
             switch result {
-                case .success(let images):
-                    self.imageCollection = images
-                    self.updateData(on: images)
+                case .success(let imageObjects):
+                    self.imageObjects = imageObjects
+                    self.updateData(on: imageObjects)
                     self.dismissLoadingView()
                 case .failure(let error):
                     self.dismissLoadingView()
@@ -93,15 +93,15 @@ class ImageCollectionVC: CLDataLoadingVC {
     private func configureDataSource() {
         collectionViewDataSource = UICollectionViewDiffableDataSource<Section, Image>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, image) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.reuseID, for: indexPath) as! ImageCell
-            cell.set(image: image)
+            if let urlString = image.urls["small"] { cell.set(image: urlString) }
             return cell
         })
     }
     
-    private func updateData(on images: [Image]) {
+    private func updateData(on imagesData: [Image]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Image>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(images)
+        snapshot.appendItems(imagesData)
         DispatchQueue.main.async { self.collectionViewDataSource.apply(snapshot, animatingDifferences: true) }
     }
     
@@ -114,11 +114,7 @@ class ImageCollectionVC: CLDataLoadingVC {
 //MARK: - CollectionViewDelegate
 extension ImageCollectionVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let urlString = imageCollection[indexPath.row].urls["thumb"] {
-            delegate.didTap(image: urlString)
-        }
+        if let urlString = imageObjects[indexPath.row].urls["small"] { delegate.didTap(image: urlString) }
         dismissVC()
     }
 }
-
-

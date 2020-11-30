@@ -8,15 +8,16 @@
 import UIKit
 
 protocol HeaderVCDelegate: class {
-    func set(image: UIImage)
+    func set(image urlString: String)
 }
 
 class NewContactVC: UIViewController {
     
     //MARK: - Properties
-    var contact: Contact?
+    var contact: Contact!
     var formTopConstraint: NSLayoutConstraint!
-    var delegate: NewContactHeaderVC!
+    weak var delegate: NewContactHeaderVC!
+    var isEditingContact = false
     
     let textFieldViews = [
         CLTextFieldView(textLabel: "Name", placeHolder: "Oscar"),
@@ -53,7 +54,7 @@ class NewContactVC: UIViewController {
         return button
     }()
     
-    init(contact: Contact?) {
+    init(contact: Contact) {
         super.init(nibName: nil, bundle: nil)
         self.contact = contact
         configureVC()
@@ -144,20 +145,11 @@ class NewContactVC: UIViewController {
     
     
     private func setupFields() {
-        guard let ct = contact else {
-            add(childVC: NewContactHeaderVC(imageData: nil, delegate: self), to: headerView)
-            return
-        }
-        
-        title = "\(ct.name!) " + ct.lastName
-        add(childVC: NewContactHeaderVC(imageData: ct.imgData, delegate: self), to: headerView)
-        fillFormFields()
-    }
-    
-    private func fillFormFields() {
-        textFieldViews[0].textField.text = contact!.name
-        textFieldViews[1].textField.text = contact!.lastName
-        textFieldViews[2].textField.text = contact!.telephone.formatToPhone()
+        if contact.name != nil { title = "\(contact.name!) " + contact.lastName }
+        add(childVC: NewContactHeaderVC(imageData: contact.imgData, delegate: self), to: headerView)
+        textFieldViews[0].textField.text = contact.name
+        textFieldViews[1].textField.text = contact.lastName
+        textFieldViews[2].textField.text = contact.telephone?.formatToPhone()
     }
     
     
@@ -167,6 +159,24 @@ class NewContactVC: UIViewController {
     }
     
     @objc private func saveContact() {
+        guard let name = textFieldViews[0].textField.text, !name.isEmpty, !name.isWhitespace(),
+              let lastName = textFieldViews[1].textField.text, !lastName.isEmpty, !lastName.isWhitespace(),
+              let telephone = textFieldViews[2].textField.text, !telephone.isEmpty else {
+            presentCLAlertOnMainThread(title: "Ups 😅", message: CLError.completeFields.rawValue, buttonTitle: "Ok")
+            return
+        }
+        
+        guard telephone.count == 14 else {
+            presentCLAlertOnMainThread(title: "Invalid Telephone", message: CLError.invalidTelephone.rawValue, buttonTitle: "Ok")
+            return
+        }
+        
+        PersistenceManager.update(contact: self.contact, actionType: isEditingContact ? .update : .add) {[weak self] (error) in
+            guard let self = self else { return }
+            self.closeHandler()
+            guard let error = error else { return }
+            self.presentCLAlertOnMainThread(title: "Ups something wen't wrong", message: error.rawValue, buttonTitle: "Ok")
+        }
         
     }
 }
@@ -189,7 +199,10 @@ extension NewContactVC: NewContactHeaderVCDelegate {
 //MARK: - ImageCollectionVCDelegate
 extension NewContactVC: ImageCollectionVCDelegate {
     func didTap(image urlString: String) {
-        DispatchQueue.main.async { self.delegate.imageView.downloadImage(from: urlString) }
+        self.delegate.imageView.downloadImage(from: urlString) {[weak self] (data) in
+            guard let self = self else { return }
+            self.contact.imgData = data
+        }
     }
 }
 
@@ -201,6 +214,12 @@ extension NewContactVC: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         scrollTo(element: textField.tag, reset: true)
+        switch textField.tag {
+            case 0: contact.name = textField.text
+            case 1: contact.lastName = textField.text
+            case 2: contact.telephone = textField.text
+            default: break
+        }
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

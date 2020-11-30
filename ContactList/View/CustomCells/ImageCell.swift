@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ImageCellDelegate: class {
+    func downloaded(image data: Data)
+}
+
 class ImageCell: UICollectionViewCell {
     
     //MARK: - Properties
@@ -24,14 +28,12 @@ class ImageCell: UICollectionViewCell {
     
     
     //MARK: - Methods
-    func set(image: Image) {
-        guard let stringURL = image.urls["thumb"] else { return }
-        avatarImageView.downloadImage(from: stringURL)
+    func set(image urlString: String) {
+        avatarImageView.downloadImage(from: urlString)
     }
     
     private func configure() {
         addSubview(avatarImageView)
-        
         NSLayoutConstraint.activate([
             avatarImageView.topAnchor.constraint(equalTo:       contentView.topAnchor),
             avatarImageView.leadingAnchor.constraint(equalTo:   contentView.leadingAnchor),

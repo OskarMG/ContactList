@@ -9,7 +9,9 @@ import UIKit
 
 class CLContactImageView: UIImageView {
     
+    //MARK: - Properties
     let placeHolderImage = Images.defaultPhoto
+    var imageData: Data!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,20 +31,14 @@ class CLContactImageView: UIImageView {
     }
     
     
-    func downloadImage(from urlString: String) {
-        guard let url = URL(string: urlString) else { return }
-        
-        let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
-            guard let self = self,
-                  error == nil,
-                  let response = response as? HTTPURLResponse,
-                  response.statusCode == 200,
-                  let data = data,
-                  let image = UIImage(data: data) else { return }
-            
-            DispatchQueue.main.async { self.image = image }
+    func downloadImage(from urlString: String, completion: ((Data?)->Void)? = nil) {
+        NetworkManager.shared.downloadImage(from: urlString) {[weak self] (data) in
+            guard let self = self, let data = data else { return }
+            DispatchQueue.main.async {
+                self.image = UIImage(data: data)
+                completion?(data)
+            }
         }
-        
-        task.resume()
     }
+    
 }
