@@ -36,7 +36,7 @@ class CLDataLoadingVC: UIViewController {
         let imageView = UIImageView(image: Icons.lostConnectionIcon)
         view.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.tintColor = .systemGreen
+        imageView.tintColor = Colors.claroRed
         imageView.contentMode = .scaleAspectFit
         
         NSLayoutConstraint.activate([

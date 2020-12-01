@@ -17,7 +17,7 @@ class MainContactListNC: UINavigationController {
     
     // Configure Main Contact List Navigation Controller
     private func configure() {
-        UINavigationBar.appearance().tintColor = .systemGreen
+        UINavigationBar.appearance().tintColor = Colors.claroRed
     }
     
     

@@ -33,6 +33,7 @@ enum FormLabels: String {
 enum Colors {
     static let absoluteWhite = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
     static let absoluteBlack = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+    static let claroRed      = UIColor(red: 239/255, green: 56/255, blue: 41/255, alpha: 1)
 }
 
 //MARK: - ScreenSizes and Device Type

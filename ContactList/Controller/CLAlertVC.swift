@@ -24,7 +24,7 @@ class CLAlertVC: UIViewController {
         button.setTitle("Ok", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
-        button.backgroundColor = .systemGreen
+        button.backgroundColor = Colors.claroRed
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()

@@ -34,7 +34,7 @@ class ContactCell: UITableViewCell {
         let padding: CGFloat = 20
         
         let arrow = UIImageView(image: Icons.rightArrowIcon)
-        arrow.tintColor   = .systemGreen
+        arrow.tintColor   = Colors.claroRed
         arrow.contentMode = .scaleAspectFit
         
         accessoryView = arrow

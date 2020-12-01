@@ -13,7 +13,7 @@ class CLNewContactMessageView: UIView {
     let imageView: UIImageView = {
         let imageView = UIImageView(image: Icons.addPersonIcon)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.tintColor = .systemGreen
+        imageView.tintColor = Colors.claroRed
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()

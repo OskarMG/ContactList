@@ -29,10 +29,12 @@ class CLContactImageView: UIImageView {
         translatesAutoresizingMaskIntoConstraints = false
     }
     
-    
     func downloadImage(from urlString: String, completion: ((Data?)->Void)? = nil) {
         NetworkManager.shared.downloadImage(from: urlString) {[weak self] (data) in
-            guard let self = self, let data = data else { return }
+            guard let self = self, let data = data else {
+                completion?(nil)
+                return
+            }
             DispatchQueue.main.async {
                 self.image = UIImage(data: data)
                 completion?(data)

@@ -23,7 +23,7 @@ class CLSmallButton: UIButton {
     private func configure() {
         setTitle("Upload image", for: .normal)
         setTitleColor(.white, for: .normal)
-        backgroundColor = .systemGreen
+        backgroundColor = Colors.claroRed
         layer.cornerRadius = 20
         clipsToBounds = true
         translatesAutoresizingMaskIntoConstraints = false
