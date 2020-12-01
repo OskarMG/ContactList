@@ -24,7 +24,6 @@ class NewContactHeaderVC: UIViewController {
         super.init(nibName: nil, bundle: nil)
         self.delegate = delegate
         self.setup(image: imageData)
-        
     }
     
     required init?(coder: NSCoder) {

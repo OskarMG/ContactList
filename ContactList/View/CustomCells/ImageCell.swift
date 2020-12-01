@@ -14,7 +14,7 @@ protocol ImageCellDelegate: class {
 class ImageCell: UICollectionViewCell {
     
     //MARK: - Properties
-    static let reuseID = "ImageCell"
+    static let reuseID  = "ImageCell"
     let avatarImageView = CLContactImageView(frame: .zero)
     
     override init(frame: CGRect) {
@@ -33,12 +33,6 @@ class ImageCell: UICollectionViewCell {
     }
     
     private func configure() {
-        addSubview(avatarImageView)
-        NSLayoutConstraint.activate([
-            avatarImageView.topAnchor.constraint(equalTo:       contentView.topAnchor),
-            avatarImageView.leadingAnchor.constraint(equalTo:   contentView.leadingAnchor),
-            avatarImageView.trailingAnchor.constraint(equalTo:  contentView.trailingAnchor),
-            avatarImageView.heightAnchor.constraint(equalTo:    contentView.heightAnchor)
-        ])
+        pin(view: avatarImageView, in: contentView)
     }
 }

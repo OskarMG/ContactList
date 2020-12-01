@@ -65,11 +65,10 @@ class ContactCell: UITableViewCell {
         contactNumber.text  = contact.telephone
         
         guard let imageData = contact.imgData else {
-            DispatchQueue.main.async { self.thumbnail.image = UIImage(named: "default_photo") }
+            DispatchQueue.main.async { self.thumbnail.image = Images.defaultPhoto }
             return
         }
         DispatchQueue.main.async { self.thumbnail.image = UIImage(data: imageData) }
-        
     }
     
 }

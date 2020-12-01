@@ -14,7 +14,6 @@ class MyContactsVC: UIViewController {
     var contacts         = [Contact]()
     var filteredContacts = [Contact]()
     
-    
     var numberOfRowInSection: Int {
         get { isSearching ? filteredContacts.count : contacts.count }
     }
@@ -74,10 +73,10 @@ class MyContactsVC: UIViewController {
     }
     
     private func isContactsListEmpty() {
-        if contacts.count == 0 {
+        if contacts.isEmpty {
+            editBtn.isEnabled = false
             tableView.isScrollEnabled = false
             tableView.setEditing(false, animated: true)
-            editBtn.isEnabled = false
             navigationItem.rightBarButtonItem = editBtn
             navigationItem.searchController?.searchBar.searchTextField.isEnabled = false
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(pushToNewContactVC))
@@ -102,12 +101,11 @@ class MyContactsVC: UIViewController {
             switch result {
             case .success(let contacts):
                 self.contacts = contacts
-                self.isContactsListEmpty()
                 DispatchQueue.main.async { self.tableView.reloadData() }
             case .failure(let error):
-                self.isContactsListEmpty()
                 self.presentCLAlertOnMainThread(title: "Ups something wen't wrong 😅", message: error.rawValue, buttonTitle: "Ok")
             }
+            self.isContactsListEmpty()
         }
     }
     

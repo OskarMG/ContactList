@@ -16,10 +16,8 @@ class CLDataLoadingVC: UIViewController {
         guard !view.subviews.contains(containerView) else { return }
         
         view.addSubview(containerView)
-        
-        containerView.backgroundColor   = .systemBackground
         containerView.alpha             = 0
-        
+        containerView.backgroundColor   = .systemBackground
         UIView.animate(withDuration: 0.25) { self.containerView.alpha = 0.8 }
         
         let activityIndicator = UIActivityIndicatorView(style: .large)

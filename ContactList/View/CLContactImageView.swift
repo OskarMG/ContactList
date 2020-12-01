@@ -11,7 +11,6 @@ class CLContactImageView: UIImageView {
     
     //MARK: - Properties
     let placeHolderImage = Images.defaultPhoto
-    var imageData: Data!
 
     override init(frame: CGRect) {
         super.init(frame: frame)

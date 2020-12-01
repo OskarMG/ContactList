@@ -13,9 +13,8 @@ class CLTextFieldView: UIView {
     let label = CLTitleLabel(textAlignment: .left, fontSize: 14)
     let textField: UITextField = {
         let textField = UITextField(frame: .zero)
-        textField.autocorrectionType = .no
         textField.returnKeyType = .done
-//        textField.backgroundColor = .yellow
+        textField.autocorrectionType = .no
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()

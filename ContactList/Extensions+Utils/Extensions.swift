@@ -17,6 +17,16 @@ extension UIView {
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing))
         self.addGestureRecognizer(tap)
     }
+    
+    func pin(view: UIView, in parent: UIView) {
+        parent.addSubview(view)
+        NSLayoutConstraint.activate([
+            view.topAnchor.constraint(equalTo:       parent.topAnchor),
+            view.leadingAnchor.constraint(equalTo:   parent.leadingAnchor),
+            view.trailingAnchor.constraint(equalTo:  parent.trailingAnchor),
+            view.heightAnchor.constraint(equalTo:    parent.heightAnchor)
+        ])
+    }
 }
 
 

@@ -10,9 +10,9 @@ import UIKit
 class CLAlertVC: UIViewController {
     
     //MARK: - Properties
-    var alertTitle: String?
-    var message: String?
-    var buttonTitle: String?
+    var message:        String?
+    var alertTitle:     String?
+    var buttonTitle:    String?
     let padding: CGFloat = 20
     
     //MARK: - UI Elements
@@ -53,8 +53,8 @@ class CLAlertVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
+        
         configureContainerView()
         configureTitleLabel()
         configureActionButton()
@@ -63,7 +63,6 @@ class CLAlertVC: UIViewController {
     
     func configureContainerView() {
         view.addSubview(containerView)
-        
         NSLayoutConstraint.activate([
             containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -113,7 +112,4 @@ class CLAlertVC: UIViewController {
     @objc func dismissVC () {
         dismiss(animated: true)
     }
-        
-
-
 }
