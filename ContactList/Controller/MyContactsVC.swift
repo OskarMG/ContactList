@@ -101,11 +101,12 @@ class MyContactsVC: UIViewController {
             switch result {
             case .success(let contacts):
                 self.contacts = contacts
+                self.isContactsListEmpty()
                 DispatchQueue.main.async { self.tableView.reloadData() }
             case .failure(let error):
+                self.isContactsListEmpty()
                 self.presentCLAlertOnMainThread(title: "Ups something wen't wrong 😅", message: error.rawValue, buttonTitle: "Ok")
             }
-            self.isContactsListEmpty()
         }
     }
     
