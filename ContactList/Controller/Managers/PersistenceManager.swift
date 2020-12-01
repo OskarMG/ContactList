@@ -19,7 +19,6 @@ enum PersistenceManager {
         static let contacts = "contacts"
     }
     
-    
     static func update(contact: Contact, actionType: PersistenceType, completed: @escaping(CLError?)->Void) {
         retriveContacts { result in
             switch result {
@@ -34,11 +33,14 @@ enum PersistenceManager {
                         }
                         retrivedContacts.append(contact)
                     case .update:
-                        retrivedContacts.removeAll { $0.identifier == contact.identifier }
-                        retrivedContacts.append(contact)
-                    case .remove:
-                        retrivedContacts.removeAll { $0.identifier == contact.identifier }
-                    }
+                        for (index, c) in retrivedContacts.enumerated() {
+                            if c.identifier == contact.identifier {
+                                retrivedContacts[index].name = contact.name
+                                retrivedContacts[index].lastName = contact.lastName
+                                retrivedContacts[index].imgData = contact.imgData
+                            }
+                        }
+                    case .remove: retrivedContacts.removeAll { $0.identifier == contact.identifier } }
                     
                     completed(save(contact: retrivedContacts))
                     

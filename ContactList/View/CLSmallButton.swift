@@ -21,7 +21,7 @@ class CLSmallButton: UIButton {
     
     //MARK: - Methods
     private func configure() {
-        setTitle("Load image", for: .normal)
+        setTitle("Upload image", for: .normal)
         setTitleColor(.white, for: .normal)
         backgroundColor = .systemGreen
         layer.cornerRadius = 20

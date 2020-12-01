@@ -32,7 +32,18 @@
 		707864242571CFEE0091446A /* CLAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707864232571CFEE0091446A /* CLAlertVC.swift */; };
 		707B024925746B160034022B /* CLSmallButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B024825746B160034022B /* CLSmallButton.swift */; };
 		707B024E2574996F0034022B /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B024D2574996F0034022B /* PersistenceManager.swift */; };
+		70A484972575AACB007C503D /* ContactListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A484962575AACB007C503D /* ContactListTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		70A484992575AACB007C503D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70531B4C256EF1CA00EBCF24 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 70531B53256EF1CA00EBCF24;
+			remoteInfo = ContactList;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		703A54E2256FD45800647EEB /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
@@ -62,6 +73,9 @@
 		707864232571CFEE0091446A /* CLAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLAlertVC.swift; sourceTree = "<group>"; };
 		707B024825746B160034022B /* CLSmallButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLSmallButton.swift; sourceTree = "<group>"; };
 		707B024D2574996F0034022B /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		70A484942575AACB007C503D /* ContactListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		70A484962575AACB007C503D /* ContactListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListTests.swift; sourceTree = "<group>"; };
+		70A484982575AACB007C503D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,21 +86,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		70A484912575AACB007C503D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		703A54E6256FD49600647EEB /* NetworkManager */ = {
+		703A54E6256FD49600647EEB /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 				703A54E9256FD8D600647EEB /* NetworkManager.swift */,
+				707B024D2574996F0034022B /* PersistenceManager.swift */,
 			);
-			path = NetworkManager;
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		70531B4B256EF1CA00EBCF24 = {
 			isa = PBXGroup;
 			children = (
 				70531B56256EF1CA00EBCF24 /* ContactList */,
+				70A484952575AACB007C503D /* ContactListTests */,
 				70531B55256EF1CA00EBCF24 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -95,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				70531B54256EF1CA00EBCF24 /* ContactList.app */,
+				70A484942575AACB007C503D /* ContactListTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -149,8 +173,7 @@
 		70531B75256EF33C00EBCF24 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				703A54E6256FD49600647EEB /* NetworkManager */,
-				707B024C257499460034022B /* PersistenceManager */,
+				703A54E6256FD49600647EEB /* Managers */,
 				70531B7D256EF5E500EBCF24 /* MainContactListNC.swift */,
 				70531B76256EF36800EBCF24 /* MyContactsVC.swift */,
 				707864232571CFEE0091446A /* CLAlertVC.swift */,
@@ -180,12 +203,13 @@
 			path = CustomCells;
 			sourceTree = "<group>";
 		};
-		707B024C257499460034022B /* PersistenceManager */ = {
+		70A484952575AACB007C503D /* ContactListTests */ = {
 			isa = PBXGroup;
 			children = (
-				707B024D2574996F0034022B /* PersistenceManager.swift */,
+				70A484962575AACB007C503D /* ContactListTests.swift */,
+				70A484982575AACB007C503D /* Info.plist */,
 			);
-			path = PersistenceManager;
+			path = ContactListTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,6 +232,24 @@
 			productReference = 70531B54256EF1CA00EBCF24 /* ContactList.app */;
 			productType = "com.apple.product-type.application";
 		};
+		70A484932575AACB007C503D /* ContactListTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70A4849D2575AACB007C503D /* Build configuration list for PBXNativeTarget "ContactListTests" */;
+			buildPhases = (
+				70A484902575AACB007C503D /* Sources */,
+				70A484912575AACB007C503D /* Frameworks */,
+				70A484922575AACB007C503D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				70A4849A2575AACB007C503D /* PBXTargetDependency */,
+			);
+			name = ContactListTests;
+			productName = ContactListTests;
+			productReference = 70A484942575AACB007C503D /* ContactListTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -219,6 +261,10 @@
 				TargetAttributes = {
 					70531B53256EF1CA00EBCF24 = {
 						CreatedOnToolsVersion = 12.2;
+					};
+					70A484932575AACB007C503D = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = 70531B53256EF1CA00EBCF24;
 					};
 				};
 			};
@@ -236,6 +282,7 @@
 			projectRoot = "";
 			targets = (
 				70531B53256EF1CA00EBCF24 /* ContactList */,
+				70A484932575AACB007C503D /* ContactListTests */,
 			);
 		};
 /* End PBXProject section */
@@ -247,6 +294,13 @@
 			files = (
 				70531B64256EF1CC00EBCF24 /* LaunchScreen.storyboard in Resources */,
 				70531B61256EF1CC00EBCF24 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70A484922575AACB007C503D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,7 +337,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		70A484902575AACB007C503D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70A484972575AACB007C503D /* ContactListTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		70A4849A2575AACB007C503D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 70531B53256EF1CA00EBCF24 /* ContactList */;
+			targetProxy = 70A484992575AACB007C503D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		70531B62256EF1CC00EBCF24 /* LaunchScreen.storyboard */ = {
@@ -451,6 +521,46 @@
 			};
 			name = Release;
 		};
+		70A4849B2575AACB007C503D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N8M7LJZP6D;
+				INFOPLIST_FILE = ContactListTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.oscarmartinezg.ContactListTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ContactList.app/ContactList";
+			};
+			name = Debug;
+		};
+		70A4849C2575AACB007C503D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N8M7LJZP6D;
+				INFOPLIST_FILE = ContactListTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.oscarmartinezg.ContactListTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ContactList.app/ContactList";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -468,6 +578,15 @@
 			buildConfigurations = (
 				70531B69256EF1CC00EBCF24 /* Debug */,
 				70531B6A256EF1CC00EBCF24 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		70A4849D2575AACB007C503D /* Build configuration list for PBXNativeTarget "ContactListTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70A4849B2575AACB007C503D /* Debug */,
+				70A4849C2575AACB007C503D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

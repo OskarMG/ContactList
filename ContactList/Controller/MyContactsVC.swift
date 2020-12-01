@@ -102,12 +102,12 @@ class MyContactsVC: UIViewController {
             switch result {
             case .success(let contacts):
                 self.contacts = contacts
+                self.isContactsListEmpty()
                 DispatchQueue.main.async { self.tableView.reloadData() }
             case .failure(let error):
+                self.isContactsListEmpty()
                 self.presentCLAlertOnMainThread(title: "Ups something wen't wrong 😅", message: error.rawValue, buttonTitle: "Ok")
             }
-            
-            self.isContactsListEmpty()
         }
     }
     
@@ -198,18 +198,5 @@ extension MyContactsVC: UISearchResultsUpdating, UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isSearching = false
         refreshContacts()
-    }
-}
-
-
-// testing data
-extension MyContactsVC {
-    func fetchData() -> [Contact] {
-        return [
-            Contact(name: "Oscar",  lastName: "Martinez",   telephone: "(829) 205-0922", imgData: nil),
-            Contact(name: "Lynn",   lastName: "Martinez",   telephone: "(829) 699-2520", imgData: nil),
-            Contact(name: "Ingeniero", lastName: "Plato",   telephone: "(809) 335-9921", imgData: nil),
-            Contact(name: "Samuel", lastName: "David",      telephone: "(849) 305-2256", imgData: nil)
-        ]
     }
 }

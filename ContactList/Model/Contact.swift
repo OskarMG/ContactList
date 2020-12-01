@@ -5,7 +5,7 @@
 //  Created by Oscar Martinez on 26/11/20.
 //
 
-import UIKit
+import Foundation
 
 struct Contact: Codable, Hashable {
     var identifier = UUID()

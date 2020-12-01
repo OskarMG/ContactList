@@ -39,9 +39,8 @@ extension UIViewController {
 }
 
 extension String {
-    
     func isWhitespace() -> Bool {
-        return self.trimmingCharacters(in: .whitespaces) == "" 
+        return self.trimmingCharacters(in: .whitespaces) == ""
     }
     
     /// mask example: `(###) ###-####`
@@ -51,18 +50,11 @@ extension String {
         var result  = ""
         var index   = numbers.startIndex // numbers iterator
 
-        // iterate over the mask characters until the iterator of numbers ends
         for ch in mask where index < numbers.endIndex {
             if ch == "#" {
-                // mask requires a number in this place, so take the next one
                 result.append(numbers[index])
-
-                // move numbers iterator to the next index
                 index = numbers.index(after: index)
-
-            } else {
-                result.append(ch) // just append a mask character
-            }
+            } else { result.append(ch) }
         }
         return result
     }

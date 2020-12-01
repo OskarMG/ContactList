@@ -20,9 +20,9 @@ class NewContactVC: UIViewController {
     var isEditingContact = false
     
     let textFieldViews = [
-        CLTextFieldView(textLabel: "Name", placeHolder: "Oscar"),
-        CLTextFieldView(textLabel: "Last name", placeHolder: "Martinez"),
-        CLTextFieldView(textLabel: "Telephone", placeHolder: "(###) ###-####")
+        CLTextFieldView(textLabel: FormLabels.name.rawValue, placeHolder: "Oscar"),
+        CLTextFieldView(textLabel: FormLabels.lastName.rawValue, placeHolder: "Martinez"),
+        CLTextFieldView(textLabel: FormLabels.telephone.rawValue, placeHolder: "(###) ###-####")
     ]
     
     //MARK: - UI Elements

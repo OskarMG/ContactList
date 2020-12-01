@@ -21,6 +21,14 @@ enum Images {
     static let defaultPhoto = UIImage(named: "default_photo")!
 }
 
+//MARK: - Form lables
+enum FormLabels: String {
+    case name = "Name"
+    case lastName = "Last name"
+    case telephone = "Telephone"
+}
+
+
 //MARK: - Custom Colors
 enum Colors {
     static let absoluteWhite = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)

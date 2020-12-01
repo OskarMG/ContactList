@@ -14,7 +14,6 @@ protocol NewContactHeaderVCDelegate: class {
 class NewContactHeaderVC: UIViewController {
     
     //MARK: - Properties
-    var imageData: Data!
     weak var delegate: NewContactVC!
     
     //MARK: - UI Elements
@@ -23,8 +22,9 @@ class NewContactHeaderVC: UIViewController {
     
     init(imageData: Data?, delegate: NewContactVC) {
         super.init(nibName: nil, bundle: nil)
-        self.imageData  = imageData
-        self.delegate   = delegate
+        self.delegate = delegate
+        self.setup(image: imageData)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -34,7 +34,6 @@ class NewContactHeaderVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureVC()
-        setupImage()
         delegate.delegate = self
     }
     
@@ -63,8 +62,8 @@ class NewContactHeaderVC: UIViewController {
         loadImage.addTarget(self, action: #selector(loadImageButtonHandler), for: .touchUpInside)
     }
     
-    private func setupImage() {
-        guard let data = imageData else { return }
+    private func setup(image data: Data?) {
+        guard let data = data else { return }
         DispatchQueue.main.async { self.imageView.image = UIImage(data: data) }
     }
     

@@ -61,12 +61,15 @@ class ContactCell: UITableViewCell {
     }
     
     func set(contact: Contact) {
-        #warning("Temporal code")
         contactName.text    = "\(contact.name!) " + contact.lastName
         contactNumber.text  = contact.telephone
         
-        guard let imageData = contact.imgData else { return }
-        thumbnail.image = UIImage(data: imageData)
+        guard let imageData = contact.imgData else {
+            DispatchQueue.main.async { self.thumbnail.image = UIImage(named: "default_photo") }
+            return
+        }
+        DispatchQueue.main.async { self.thumbnail.image = UIImage(data: imageData) }
+        
     }
     
 }
