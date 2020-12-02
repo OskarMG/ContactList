@@ -22,6 +22,7 @@ class ImageCollectionVC: CLDataLoadingVC {
     //MARK: - UI Elements
     let doneButton: UIButton = {
         let button = UIButton(type: .close)
+        button.tintColor = Colors.claroRed
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()

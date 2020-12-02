@@ -81,10 +81,12 @@ class MyContactsVC: UIViewController {
             navigationItem.searchController?.searchBar.searchTextField.isEnabled = false
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(pushToNewContactVC))
             
-            newContactMessageView = CLNewContactMessageView(parent: view)
-            newContactMessageView.addGestureRecognizer(tapGesture)
-            newContactMessageView.isUserInteractionEnabled = true
-            newContactMessageView.bringSubviewToFront(view)
+            if newContactMessageView == nil {
+                newContactMessageView = CLNewContactMessageView(parent: view)
+                newContactMessageView.addGestureRecognizer(tapGesture)
+                newContactMessageView.isUserInteractionEnabled = true
+                newContactMessageView.bringSubviewToFront(view)
+            }
             return
         }
         
