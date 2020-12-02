@@ -35,9 +35,10 @@ enum PersistenceManager {
                     case .update:
                         for (index, c) in retrivedContacts.enumerated() {
                             if c.identifier == contact.identifier {
-                                retrivedContacts[index].name = contact.name
-                                retrivedContacts[index].lastName = contact.lastName
-                                retrivedContacts[index].imgData = contact.imgData
+                                retrivedContacts[index].name        = contact.name
+                                retrivedContacts[index].lastName    = contact.lastName
+                                retrivedContacts[index].telephone   = contact.telephone
+                                retrivedContacts[index].imgData     = contact.imgData
                             }
                         }
                     case .remove: retrivedContacts.removeAll { $0.identifier == contact.identifier } }

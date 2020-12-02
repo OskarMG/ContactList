@@ -171,9 +171,16 @@ class NewContactVC: UIViewController {
             return
         }
         
+        self.contact.name = name
+        self.contact.lastName = lastName
+        self.contact.telephone = telephone
+        
         PersistenceManager.update(contact: self.contact, actionType: isEditingContact ? .update : .add) {[weak self] (error) in
             guard let self = self else { return }
             self.closeHandler()
+            
+            print(name, lastName, telephone)
+            
             guard let error = error else { return }
             self.presentCLAlertOnMainThread(title: "Ups something wen't wrong", message: error.rawValue, buttonTitle: "Ok")
         }
@@ -212,8 +219,11 @@ extension NewContactVC: UITextFieldDelegate {
         scrollTo(element: textField.tag, reset: false)
     }
     
+    
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         scrollTo(element: textField.tag, reset: true)
+        print(textField.tag)
         switch textField.tag {
             case 0: contact.name = textField.text
             case 1: contact.lastName = textField.text
